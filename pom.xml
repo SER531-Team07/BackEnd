@@ -13,7 +13,7 @@
 	<artifactId>swe</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>jobs</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Job Seach Application using Semantic Web</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -37,14 +37,6 @@
 			<type>pom</type>
 			<version>3.16.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
-		<dependency>
-			<groupId>com.googlecode.json-simple</groupId>
-			<artifactId>json-simple</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-
-
 	</dependencies>
 
 	<build>

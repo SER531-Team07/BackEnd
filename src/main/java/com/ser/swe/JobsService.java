@@ -10,6 +10,6 @@ public class JobsService {
 	private Ontology ontology;
 	
 	public JobsCollection getJobCollection() {
-		return ontology.locationBasedSearch();
+		return ontology.search();
 	}
 }

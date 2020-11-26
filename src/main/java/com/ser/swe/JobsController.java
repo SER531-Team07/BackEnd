@@ -10,14 +10,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @RestController
-public class HelloController {
+public class JobsController {
 	
 	@Autowired
 	private JobsService jobsService;
 	 
-	@GetMapping("/hello")
+	@GetMapping("/")
 	public String Hello() {
-		return "SER 531 Project";
+		return "SER 531 Project - Team 07 - Job Search Application";
 		
 	}
 	

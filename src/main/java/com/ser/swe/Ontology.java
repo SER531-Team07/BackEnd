@@ -87,7 +87,7 @@ public class Ontology {
 		}
 	}
 
-	public JobsCollection locationBasedSearch() {
+	public JobsCollection search() {
 		QueryExecution qe = null;
 		Query query = null;
 		
@@ -112,11 +112,22 @@ public class Ontology {
 				
 				String companyName = row.get("company_name") != null ? row.get("company_name").toString() : "N/A";
 				String cityName = row.get("city_name") != null ? row.get("city_name").toString() : "N/A";
-				String title = row.get("salary") != null ? row.get("salary").toString() : "N/A";
+				String title = row.get("title") != null ? row.get("title").toString() : "N/A";
 				String date = row.get("date") != null ? row.get("date").toString() : "N/A";
+				String salary = row.get("salary") != null ? row.get("salary").toString() : "N/A";
+				String link = row.get("link") != null ? row.get("link").toString() : "N/A";
+				String type = row.get("type") != null ? row.get("type").toString() : "N/A";
+				String industry = row.get("industry") != null ? row.get("industry").toString() : "N/A";
 				
 				job.setCityName(cityName);
 				job.setCompanyName(companyName);
+				job.setTitle(title);
+				job.setDate(date);
+				job.setSalary(salary);
+				job.setLink(link);
+				job.setType(type);
+				job.setIndustry(industry);
+				
 				jobList.add(job);
 				
 			}
@@ -135,6 +146,6 @@ public class Ontology {
 	// Local testing
 	public static void main(String[] args) {
 		Ontology ontology = new Ontology();
-		ontology.locationBasedSearch();
+		ontology.search();
 	}
 }
