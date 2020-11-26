@@ -9,7 +9,7 @@ public class JobsService {
 	@Autowired
 	private Ontology ontology;
 	
-	public JobsCollection getJobCollection() {
-		return ontology.search();
+	public JobsCollection getJobCollection(String queryStr) {
+		return ontology.executeQuery(queryStr);
 	}
 }
