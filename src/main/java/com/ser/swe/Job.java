@@ -1,7 +1,8 @@
 package com.ser.swe;
 
 public class Job {
-	private String className;
+	
+	private String companyName;
 	private String cityName;
 	public String getCityName() {
 		return cityName;
@@ -9,10 +10,15 @@ public class Job {
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
 	}
-	public String getClassName() {
-		return className;
+	
+	public String getCompanyName() {
+		return companyName;
 	}
-	public void setClassName(String className) {
-		this.className = className;
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+	@Override
+	public String toString() {
+		return "Job [className=" + companyName + ", cityName=" + cityName + "]";
 	}
 }

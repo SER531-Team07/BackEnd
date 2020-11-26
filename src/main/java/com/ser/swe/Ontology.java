@@ -14,7 +14,9 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class Ontology {
 
 	private static final String PROPERTIES_FILE_NAME = "app.properties";
@@ -89,7 +91,6 @@ public class Ontology {
 		QueryExecution qe = null;
 		Query query = null;
 		
-		
 		String jobsURL = properties.getProperty(env + "server.jobs");
 		String locationsURL = properties.getProperty(env + "server.locations");
 		String companiesURl = properties.getProperty(env + "server.companies");
@@ -105,27 +106,21 @@ public class Ontology {
 
 			ResultSet results = qe.execSelect();
 			
-			
 			while (results.hasNext()) {
-				Job job = new Job();
 				QuerySolution row = results.next();
+				Job job = new Job();
+				
 				String companyName = row.get("company_name") != null ? row.get("company_name").toString() : "N/A";
 				String cityName = row.get("city_name") != null ? row.get("city_name").toString() : "N/A";
 				String title = row.get("salary") != null ? row.get("salary").toString() : "N/A";
 				String date = row.get("date") != null ? row.get("date").toString() : "N/A";
-				log.info("-------------------------------------");
-				log.info(companyName);
-				log.info(cityName);
-				log.info(title);
-				log.info(date);
-				log.info("-------------------------------------");
-				System.out.println(cityName);
+				
 				job.setCityName(cityName);
+				job.setCompanyName(companyName);
 				jobList.add(job);
 				
 			}
 			jobsCollection.setJobs(jobList);
-//			System.out.println(json);
 			
 		} catch (Exception e) {
 			log.error(e);
