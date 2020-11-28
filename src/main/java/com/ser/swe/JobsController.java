@@ -32,12 +32,12 @@ public class JobsController {
 			@RequestParam(required = false) String industry, @RequestParam(required = false) String jobtype) {
 		String nextLine = "\r\n";
 		String queryStr = SparqlQuery.COMMON_PREFIX + nextLine;
-		if (city == null && company == null && title == null && industry == null && jobtype == null) {
+		
+		if (city == null && company == null) {
 			queryStr += SparqlQuery.OPEN_BRACKET + nextLine + SparqlQuery.JOBS_SERVICE + nextLine
-					+ SparqlQuery.LOCATION_SERVICE + nextLine +SparqlQuery.COMPANY_SERVICE + nextLine
-					+ SparqlQuery.CLOSING_BRACKET;
+					+ SparqlQuery.LOCATION_SERVICE + nextLine + SparqlQuery.COMPANY_SERVICE + nextLine;
 		} else {
-			queryStr += SparqlQuery.WHERE_CLAUSE + nextLine + SparqlQuery.LOCATION_SERVICE;
+			queryStr += SparqlQuery.WHERE_CLAUSE + nextLine + SparqlQuery.LOCATION_SERVICE + nextLine;
 			if (city != null) {
 				queryStr += String.format(SparqlQuery.CITY_FILTER, city) + nextLine;
 			}
@@ -46,17 +46,18 @@ public class JobsController {
 				queryStr += String.format(SparqlQuery.COMPANY_FILTER, company) + nextLine;
 			}
 			queryStr += SparqlQuery.JOBS_SERVICE + nextLine;
-			if (title != null) {
-				queryStr += String.format(SparqlQuery.TITLE_FILTER, title) + nextLine;
-			}
-			if (industry != null) {
-				queryStr += String.format(SparqlQuery.INDUSTRY_FILTER, industry) + nextLine;
-			}
-			if (jobtype != null) {
-				queryStr += String.format(SparqlQuery.JOBTYPE_FILTER, jobtype) + nextLine;
-			}
-			queryStr += SparqlQuery.CLOSING_BRACKET;
 		}
+		
+		if (title != null) {
+			queryStr += String.format(SparqlQuery.TITLE_FILTER, title) + nextLine;
+		}
+		if (industry != null) {
+			queryStr += String.format(SparqlQuery.INDUSTRY_FILTER, industry) + nextLine;
+		}
+		if (jobtype != null) {
+			queryStr += String.format(SparqlQuery.JOBTYPE_FILTER, jobtype) + nextLine;
+		}
+		queryStr += SparqlQuery.CLOSING_BRACKET;
 
 		System.out.println(queryStr);
 
