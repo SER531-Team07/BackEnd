@@ -67,7 +67,7 @@ public class SparqlQuery {
 			"      				 companies:company_name ?company_name ;\r\n" + 
 			"      				 companies:ceo_name ?ceo_name ;\r\n" + 
 			"      				 companies:number_of_employees ?employees .\r\n" + 
-			"      		FILTER (regex(?company_name, %s, 'i'))\r\n" + 
+			"      		FILTER (regex(?company_name, '%s', 'i'))\r\n" + 
 			"    	}\r\n" + 
 			"	}\r\n" + 
 			"	SERVICE <http://ec2-18-223-22-133.us-east-2.compute.amazonaws.com:3030/Jobs> {\r\n" + 
@@ -86,7 +86,7 @@ public class SparqlQuery {
 			"  SERVICE <http://ec2-3-134-101-50.us-east-2.compute.amazonaws.com:3030/City> {\r\n" + 
 			"        SELECT ?state WHERE {\r\n" + 
 			"  		?state locations:has_city ?city . \r\n" + 
-			"  		FILTER(regex(xsd:string(?city), %s, 'i'))\r\n" + 
+			"  		FILTER(regex(xsd:string(?city), '%s', 'i'))\r\n" + 
 			"    }\r\n" + 
 			"    }\r\n" + 
 			"    SERVICE <http://ec2-3-134-101-50.us-east-2.compute.amazonaws.com:3030/City> {\r\n" + 
@@ -106,7 +106,7 @@ public class SparqlQuery {
 			"		SELECT ?type (count(?job) as ?count)\r\n" + 
 			"		WHERE {\r\n" + 
 			"				?job jobs:type ?type.\r\n" + 
-			"				FILTER (?type = %s)\r\n" + 
+			"				FILTER (?type = '%s')\r\n" + 
 			"		   }\r\n" + 
 			"		GROUP BY(?type)\r\n" + 
 			"	}\r\n" + 
@@ -120,7 +120,7 @@ public class SparqlQuery {
 			"		SELECT ?industry (count(?job) as ?count)\r\n" + 
 			"		WHERE {\r\n" + 
 			"				?job jobs:belongs_to_industry ?industry .\r\n" + 
-			"      	FILTER (regex(?industry, %s, 'i'))\r\n" + 
+			"      	FILTER (regex(?industry, '%s', 'i'))\r\n" + 
 			"		}\r\n" + 
 			"		GROUP BY(?industry)\r\n" + 
 			"	}\r\n" + 
@@ -134,7 +134,7 @@ public class SparqlQuery {
 			"		SELECT ?title (count(?job) as ?count)\r\n" + 
 			"		WHERE {\r\n" + 
 			"				?job jobs:has_title ?title .\r\n" + 
-			"      	FILTER (regex(?title, %s, 'i'))\r\n" + 
+			"      	FILTER (regex(?title, '%s', 'i'))\r\n" + 
 			"		}\r\n" + 
 			"		GROUP BY(?title)\r\n" + 
 			"	}\r\n" + 

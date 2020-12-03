@@ -146,7 +146,6 @@ public class Ontology {
 			
 			companiesCollection.setCompany(companyList);
 			
-			
 		} catch (Exception e) {
 			log.error(e);
 		} finally {
@@ -200,8 +199,6 @@ public class Ontology {
 		String count = null;
 
 		try {
-			System.out.println("======================================================================");
-			System.out.println(queryStr);
 			query = QueryFactory.create(queryStr);
 
 			qe = QueryExecutionFactory.sparqlService(jobsURL, query);
@@ -210,7 +207,6 @@ public class Ontology {
 			
 			while (results.hasNext()) {
 				QuerySolution row = results.next();
-				System.out.println(row.get("count"));
 				count = row.get("count") != null ? row.get("count").toString() : "N/A";
 			}
 			
@@ -222,7 +218,6 @@ public class Ontology {
 				qe.close();
 			}
 		}
-		System.out.println(count);
 		return count;
 	}
 	

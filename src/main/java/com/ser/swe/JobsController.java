@@ -1,5 +1,7 @@
 package com.ser.swe;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,8 +73,6 @@ public class JobsController {
 		}
 		queryStr += SparqlQuery.CLOSING_BRACKET;
 
-		System.out.println(queryStr);
-
 		return jobsService.getJobCollection(queryStr);
 	}
 	
@@ -91,9 +91,9 @@ public class JobsController {
 	@JsonSerialize
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@ResponseBody
-	public JobsCollection getLocationVisualization(@RequestParam(required = false) String city) {
+	public List<String> getLocationVisualization(@RequestParam(required = false) String city) {
 		String queryStr = String.format(SparqlQuery.LOCATION_VISUALIZATION_QUERY, city);
-		return jobsService.getJobCollection(queryStr);
+		return jobsService.getLocationVisualization(queryStr);
 	}
 	
 	@CrossOrigin
@@ -103,7 +103,6 @@ public class JobsController {
 	@ResponseBody
 	public String getOtherVisualization(@RequestParam(required = false) String type, String industry, String title) {
 		String queryStr = null;
-		System.out.println("----->" + type + industry + title);
 		if(type != null)
 			queryStr = String.format(SparqlQuery.JOBTYPE_VISUALIZATION_QUERY, type);
 		if(industry != null)
