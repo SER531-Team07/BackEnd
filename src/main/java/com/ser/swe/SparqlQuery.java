@@ -59,7 +59,7 @@ public class SparqlQuery {
 			"PREFIX jobs: <http://www.semanticweb.org/SER531/ontologies/Team-7/Jobs#>\r\n" + 
 			"PREFIX locations: <http://www.semanticweb.org/SER531/ontologies/Team-7/Locations#>\r\n" + 
 			"\r\n" + 
-			"SELECT ?company_name ?ceo_name ?employees ?count {\r\n" + 
+			"SELECT ?company_name ?ceo_name ?employees (STR(?count1) AS ?count) {\r\n" + 
 			"  	SERVICE <http://ec2-3-129-207-101.us-east-2.compute.amazonaws.com:3030/Companies> {\r\n" + 
 			"  	SELECT ?company_id ?company_name ?ceo_name ?employees\r\n" + 
 			"	WHERE {\r\n" + 
@@ -71,7 +71,7 @@ public class SparqlQuery {
 			"    	}\r\n" + 
 			"	}\r\n" + 
 			"	SERVICE <http://ec2-18-223-22-133.us-east-2.compute.amazonaws.com:3030/Jobs> {\r\n" + 
-			"    SELECT ?company_id (count(?job) as ?count)\r\n" + 
+			"    SELECT ?company_id (count(?job) as ?count1)\r\n" + 
 			"    WHERE {\r\n" + 
 			"         	?job jobs:posted_by ?company_id.\r\n" + 
 			"       }\r\n" + 
@@ -82,7 +82,7 @@ public class SparqlQuery {
 	public static final String LOCATION_VISUALIZATION_QUERY = "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\r\n" + 
 			"PREFIX locations: <http://www.semanticweb.org/SER531/ontologies/Team-7/Locations#>\r\n" + 
 			"\r\n" + 
-			"SELECT ?cities {\r\n" + 
+			"SELECT (STR(?cities1) AS ?cities) {\r\n" + 
 			"  SERVICE <http://ec2-3-134-101-50.us-east-2.compute.amazonaws.com:3030/City> {\r\n" + 
 			"        SELECT ?state WHERE {\r\n" + 
 			"  		?state locations:has_city ?city . \r\n" + 
@@ -90,8 +90,8 @@ public class SparqlQuery {
 			"    }\r\n" + 
 			"    }\r\n" + 
 			"    SERVICE <http://ec2-3-134-101-50.us-east-2.compute.amazonaws.com:3030/City> {\r\n" + 
-			"        SELECT ?state2 ?cities WHERE {\r\n" + 
-			"  		?state2 locations:has_city ?cities . \r\n" + 
+			"        SELECT ?state2 ?cities1 WHERE {\r\n" + 
+			"  		?state2 locations:has_city ?cities1 . \r\n" + 
 			"     }\r\n" + 
 			"    \r\n" + 
 			"  }\r\n" + 
@@ -101,9 +101,9 @@ public class SparqlQuery {
 	public static final String JOBTYPE_VISUALIZATION_QUERY = "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\r\n" + 
 			"PREFIX jobs: <http://www.semanticweb.org/SER531/ontologies/Team-7/Jobs#>\r\n" + 
 			"\r\n" + 
-			"SELECT ?type ?count {\r\n" + 
+			"SELECT ?type (STR(?count1) AS ?count) {\r\n" + 
 			"	SERVICE <http://ec2-18-223-22-133.us-east-2.compute.amazonaws.com:3030/Jobs> {\r\n" + 
-			"		SELECT ?type (count(?job) as ?count)\r\n" + 
+			"		SELECT ?type (count(?job) as ?count1)\r\n" + 
 			"		WHERE {\r\n" + 
 			"				?job jobs:type ?type.\r\n" + 
 			"				FILTER (?type = '%s')\r\n" + 
@@ -115,9 +115,9 @@ public class SparqlQuery {
 	public static final String INDUSTRY_VISUALIZATION_QUERY = "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\r\n" + 
 			"PREFIX jobs: <http://www.semanticweb.org/SER531/ontologies/Team-7/Jobs#>\r\n" + 
 			"\r\n" + 
-			"SELECT ?industry ?count {\r\n" + 
+			"SELECT ?industry (STR(?count1) AS ?count) {\r\n" + 
 			"	SERVICE <http://ec2-18-223-22-133.us-east-2.compute.amazonaws.com:3030/Jobs> {\r\n" + 
-			"		SELECT ?industry (count(?job) as ?count)\r\n" + 
+			"		SELECT ?industry (count(?job) as ?count1)\r\n" + 
 			"		WHERE {\r\n" + 
 			"				?job jobs:belongs_to_industry ?industry .\r\n" + 
 			"      	FILTER (regex(?industry, '%s', 'i'))\r\n" + 
@@ -129,9 +129,9 @@ public class SparqlQuery {
 	public static final String JOBTITLE_VISUALIZATION_QUERY = "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\r\n" + 
 			"PREFIX jobs: <http://www.semanticweb.org/SER531/ontologies/Team-7/Jobs#>\r\n" + 
 			"\r\n" + 
-			"SELECT ?title ?count {\r\n" + 
+			"SELECT ?title (STR(?count1) AS ?count) {\r\n" + 
 			"	SERVICE <http://ec2-18-223-22-133.us-east-2.compute.amazonaws.com:3030/Jobs> {\r\n" + 
-			"		SELECT ?title (count(?job) as ?count)\r\n" + 
+			"		SELECT ?title (count(?job) as ?count1)\r\n" + 
 			"		WHERE {\r\n" + 
 			"				?job jobs:has_title ?title .\r\n" + 
 			"      	FILTER (regex(?title, '%s', 'i'))\r\n" + 

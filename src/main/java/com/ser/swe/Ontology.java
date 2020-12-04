@@ -190,13 +190,13 @@ public class Ontology {
 		return cities;
 	}
 	
-	public String executeCountVisualization(String queryStr) {
+	public List<String> executeCountVisualization(String queryStr) {
 		QueryExecution qe = null;
 		Query query = null;
 		
 		String jobsURL = properties.getProperty(env + "server.jobs");
 		
-		String count = null;
+		List<String> count = new ArrayList<>();
 
 		try {
 			query = QueryFactory.create(queryStr);
@@ -207,7 +207,10 @@ public class Ontology {
 			
 			while (results.hasNext()) {
 				QuerySolution row = results.next();
-				count = row.get("count") != null ? row.get("count").toString() : "N/A";
+				
+				String cnt = row.get("count") != null ? row.get("count").toString() : "N/A";
+				
+				count.add(cnt);
 			}
 			
 			

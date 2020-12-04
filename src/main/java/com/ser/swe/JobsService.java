@@ -23,7 +23,7 @@ public class JobsService {
 		return ontology.executeLocationVisualization(queryStr);
 	}
 	
-	public String getCountVisualization(String queryStr) {
+	public List<String> getCountVisualization(String queryStr) {
 		return ontology.executeCountVisualization(queryStr);
 	}
 }

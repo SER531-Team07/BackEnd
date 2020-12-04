@@ -24,7 +24,7 @@ public class JobsController {
 
 	}
 
-	@CrossOrigin
+	@CrossOrigin(origins = "*")
 	@GetMapping("/jobs")
 	@JsonSerialize
 	@JsonIgnoreProperties(ignoreUnknown = true)
@@ -76,7 +76,7 @@ public class JobsController {
 		return jobsService.getJobCollection(queryStr);
 	}
 	
-	@CrossOrigin
+	@CrossOrigin(origins = "*")
 	@GetMapping("/visualization/company")
 	@JsonSerialize
 	@JsonIgnoreProperties(ignoreUnknown = true)
@@ -86,7 +86,7 @@ public class JobsController {
 		return jobsService.getCompanyVisualization(queryStr);
 	}
 	
-	@CrossOrigin
+	@CrossOrigin(origins = "*")
 	@GetMapping("/visualization/location")
 	@JsonSerialize
 	@JsonIgnoreProperties(ignoreUnknown = true)
@@ -96,12 +96,12 @@ public class JobsController {
 		return jobsService.getLocationVisualization(queryStr);
 	}
 	
-	@CrossOrigin
+	@CrossOrigin(origins = "*")
 	@GetMapping("/visualization/count")
 	@JsonSerialize
 	@JsonIgnoreProperties(ignoreUnknown = true)
 	@ResponseBody
-	public String getOtherVisualization(@RequestParam(required = false) String type, String industry, String title) {
+	public List<String> getOtherVisualization(@RequestParam(required = false) String type, String industry, String title) {
 		String queryStr = null;
 		if(type != null)
 			queryStr = String.format(SparqlQuery.JOBTYPE_VISUALIZATION_QUERY, type);
