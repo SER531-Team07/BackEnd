@@ -36,13 +36,17 @@ public class Ontology {
 	private void readProperties() {
 		InputStream inputStream = null;
 		try {
-			inputStream = getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILE_NAME);
-			if (inputStream != null) {
-				properties.load(inputStream);
-			} else {
-				throw new FileNotFoundException(
-						"Property file '" + PROPERTIES_FILE_NAME + "' not found in the classpath");
-			}
+//			inputStream = getClass().getClassLoader().getResourceAsStream(PROPERTIES_FILE_NAME);
+//			if (inputStream != null) {
+//				properties.load(inputStream);
+//			} else {
+//				throw new FileNotFoundException(
+//						"Property file '" + PROPERTIES_FILE_NAME + "' not found in the classpath");
+//			}
+			properties.setProperty("env", "test");
+			properties.setProperty("server.jobs", "http://ec2-18-223-22-133.us-east-2.compute.amazonaws.com:3030/Jobs");
+			properties.setProperty("server.companies", "http://ec2-3-129-207-101.us-east-2.compute.amazonaws.com:3030/Companies");
+			properties.setProperty("server.locations", "http://ec2-3-134-101-50.us-east-2.compute.amazonaws.com:3030/Locations");
 		} catch (Exception e) {
 			log.error(e);
 		} finally {
